@@ -6,6 +6,11 @@ import {Link} from 'react-router-dom'
 
 
 const Booking = () => {
+
+
+
+
+    
     return (
         <div className="overlaybooking">
             <Navbar></Navbar>

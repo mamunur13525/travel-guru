@@ -1,14 +1,64 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Login.css';
 import image from '../../images/favicon.png';
 import { Link } from 'react-router-dom';
 import img1 from '../../images/Icon/fb.png';
 import img2 from '../../images/Icon/google.png';
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from '../../firebaseConfig'
+import { UserContext } from '../../App';
+import {useHistory, useLocation} from 'react-router-dom';
 
 
 const Login = () => {
+    const history = useHistory();
+    const location = useLocation();
+
+const [loggedIn, setloggedIn] = useContext(UserContext);
+   if(firebase.app.length === 0){
+    firebase.initializeApp(firebaseConfig);
+   }
+   const { from } = location.state || { from: { pathname: "/" } };
+    const googlelogin =() => {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then(function(result) {
+            const {displayName, email} = result.user;
+           const signInUser = {name:displayName, email}
+            setloggedIn(signInUser)
+            history.replace(from);
+           
+            
+            // ...
+          }).catch(function(error) {
+            // Handle Errors here.
+            var errorMessage = error.message;
+            var email = error.email;
+           
+          });
+    }
+    const fbLogin=() => {
+        var fbProvider = new firebase.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(fbProvider).then(function(result) {
+            const {displayName, email} = result.user;
+            const signInUser = {name:displayName, email}
+             setloggedIn(signInUser)
+             history.replace(from);
+            
+          }).catch(function(error) {
+      
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+          });
+    }
+
     return (
         <div className="overlay white">
+           
                <div className="container">
                <nav className='d-flex navbar p-4'>
                     <div>
@@ -22,7 +72,7 @@ const Login = () => {
                             <li>Destination</li>
                             <li>Blog</li>
                             <li>Contact</li>
-                        <Link to="/login"> <button> Login</button></Link>
+                        <Link to="/login"> <button > Login</button></Link>
                         </ul>
                 </nav>
             </div>
@@ -40,11 +90,11 @@ const Login = () => {
                 </div>
                 <div className="othersLogin w-25  m-auto">
                     <p className="text-center or">Or</p>
-                    <div className="fblogin">
+                    <div onClick={fbLogin} className="fblogin">
                         <img  src={img1} alt=""/>
                         <span>Continue with Facebook</span>
                     </div>
-                    <div className="googlelogin">
+                    <div onClick={googlelogin} className="googlelogin">
                         <img src={img2} alt=""/>
                         <span className="span2">Continue with Google</span>
                     </div>

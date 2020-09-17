@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,createContext } from 'react';
 import './App.css';
 import Home from './component/Home/Home';
 import Login from './component/Login/Login';
@@ -13,13 +13,16 @@ import Sundorban from './component/Sundorban/Sundorban';
 import Booking from './component/Booking/Booking';
 import CreateAccount from './component/CreateAccount/CreateAccount';
 import Search from './component/Search/Search';
+import PrivateRoute from './component/PrivateRoute/PrivateRoute';
 
 
 
+ export const UserContext = createContext();
 
 function App() {
+const [loggedIn, setLoggedIn] = useState({});
   return (
-  
+    <UserContext.Provider value={[loggedIn, setLoggedIn]}>
         <Router>
         
                 <Switch>
@@ -40,9 +43,9 @@ function App() {
                     <Route path='/sundorban'>
                       <Sundorban></Sundorban>
                     </Route>
-                    <Route path='/booking'>
+                    <PrivateRoute path='/booking'>
                       <Booking></Booking>
-                    </Route>
+                    </PrivateRoute>
                     <Route path='/createaccount'>
                         <CreateAccount></CreateAccount>
                     </Route>
@@ -60,7 +63,7 @@ function App() {
                 </Switch>
 
             </Router>
-
+      </UserContext.Provider>
   );
 }
 
