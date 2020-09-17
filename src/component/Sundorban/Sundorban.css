@@ -1,0 +1,48 @@
+
+.sundorbanBg{
+    background-image: url('../../images/bg-images/sundorbon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: 97.8vh;
+}
+.overlaythree{
+    background-color: rgba(0, 0, 0, 0.514);
+    height: 97.8vh;
+}
+
+.left-side{
+    padding:0px 30px;
+    margin-left: 100px;
+}
+.left-side h1{
+    font-size: 65px;
+    color:white;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top:25px;
+}
+.left-side p{
+    color:white;
+    margin-right: 100px;
+}
+.left-side button{
+    padding:8px 25px;
+    background-color: #F9A623;
+    display: block;
+    color: black;
+    border:none;
+    border-radius: 5px;
+}
+.right-side div img{
+    width: 250px;
+    margin: 8px;
+    transition: transform .5s;
+   
+}
+.right-side div img:hover{
+    cursor:pointer;
+    transform: scale(1.05);
+    border: 5px solid #F9A623;
+    border-radius: 25px;
+}

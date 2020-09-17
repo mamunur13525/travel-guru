@@ -1,0 +1,33 @@
+img{
+    width: 100px;
+}
+
+.navbar ul li{
+    padding:5px 30px;
+    text-decoration: none;
+    color:white;
+    list-style: none;
+    cursor:pointer;
+}
+.searchBox{
+    width:280px;
+    padding: 5px 10px;
+    border: 1px solid white;
+    color:white;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.082);
+}
+.searchBox::placeholder{
+    color:white;
+}
+.navbar ul button{
+    padding:5px 25px;
+    background-color: #F9A623;
+    display: block;
+    color: black;
+    border:none;
+    border-radius: 5px;
+}
+.navbar ul button:hover{
+    background-color: rgb(240, 155, 18);
+}

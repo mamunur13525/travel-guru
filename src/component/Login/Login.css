@@ -1,0 +1,86 @@
+.white{
+    background-color:white;
+}
+img{
+    width: 100px;
+}
+
+.navbar .navbarUl li{
+    padding:5px 30px;
+    text-decoration: none;
+    color:black;
+    list-style: none;
+    cursor:pointer;
+}
+
+.navbar .navbarUl button{
+    padding:5px 25px;
+    background-color: #F9A623;
+    display: block;
+    color: black;
+    border:none;
+    border-radius: 5px;
+}
+.navbar ul button:hover{
+    background-color: rgb(240, 155, 18);
+}
+.login{
+    padding: 25px 50px;
+    width: 500px ;
+    margin: 40px auto 20px;
+    border: 1px solid rgba(0, 0, 0, 0.61);
+  
+}
+.login input{
+    margin: 20px 0px;
+    border:none;
+    border-bottom: 1px solid black;
+    padding: 5px 0;
+}
+input:focus{
+    outline: none;
+}
+.login input::placeholder{
+    color:black
+}
+.loginInput{
+    width: 100%;
+    border-bottom:none!important;
+    background:#F9A623;
+
+}
+.text-center a, .link a{
+    color:#F9A623;
+}
+.othersLogin img{
+    width: 25px;
+}
+.othersLogin span{
+    margin-left: 80px;
+    font-size: 12px;
+    font-weight:bold;
+}
+.othersLogin .span2{
+    margin-left: 90px;
+    font-size: 12px;
+    font-weight:bold;
+}
+
+.fblogin, .googlelogin{
+    cursor: pointer;
+    border-radius: 50px;
+    padding: 2px;
+    margin: 10px;
+    border: 1px solid rgb(180, 180, 180);
+}
+.or{
+    padding: 3px;
+}
+.or::after,.or::before{
+    content: '';
+    height: 1px;
+    width: 155px;
+    background: rgb(170, 170, 170);
+    display:inline-block;
+    margin-bottom:4px;
+}

@@ -1,0 +1,11 @@
+body{
+    background-image:url('../../images/bg-images/Rectangle\ 1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.overlay{
+  
+    background-color: rgba(0, 0, 0, 0.692);
+    height: 100vh;
+}
