@@ -5,19 +5,15 @@ import icon from '../../images/Icon/calender_icon.png';
 import {Link} from 'react-router-dom'
 
 
-const Booking = () => {
-
-
-
-
-    
+const Booking = (props) => {
+  
     return (
         <div className="overlaybooking">
             <Navbar></Navbar>
            
               <div className="bookingContent  d-flex justify-content-around">
                 <div className="leftSideBooking">
-                    <h1>Cox's Bazar</h1>
+                    <h1>{}</h1>
                     <p className="mt-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero eius animi amet quo voluptatibus quisquam quam! Quaerat ut itaque voluptatem delectus, repellendus cupiditate nam molestias doloremque officia Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero eius animi amet quo voluptatibus quisquam quam! Quaerat ut itaque voluptatem delectus, repellendus cupiditate nam molestias doloremque officiaerror perferendis aliquid.</p>
                 </div>
                 <div className="rightSideBooking">

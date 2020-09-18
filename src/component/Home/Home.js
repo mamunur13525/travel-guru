@@ -8,6 +8,7 @@ const Home = () => {
    
     return (
         <div className="overlay">
+            
             <Navbar></Navbar>
             <Maincontent></Maincontent>
         </div>

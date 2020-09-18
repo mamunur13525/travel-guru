@@ -50,7 +50,7 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
             const signInUser = {name:displayName, email}
              setloggedIn(signInUser)
              history.replace(from);
-            
+            console.log(result.user)
           }).catch(function(error) {
       
             var errorMessage = error.message;
@@ -83,7 +83,7 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
     const logInBtn = (e) => {
         firebase.auth().signInWithEmailAndPassword(login.email, login.password)
         .then(res =>{
-            console.log(res.user);
+            console.log(res);
             const {displayName, email} = res.user;
             const signInUser = {displayName, email}
              setloggedIn(signInUser)

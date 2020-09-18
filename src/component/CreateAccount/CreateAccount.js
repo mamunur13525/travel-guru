@@ -35,12 +35,11 @@ const CreateAccount = () => {
         }
         if(e.target.name === "displayName"){      
                 validForm=  e.target.value;
-                
-            
+   
         }
     if(validForm){
         const newUser= {...user};
-        newUser.[e.target.name] = e.target.value;
+        newUser[e.target.name] = e.target.value;
         setUser(newUser);
         console.log(newUser)
     }
@@ -50,13 +49,14 @@ const CreateAccount = () => {
 const formSubmit =(e) => {
 
     if(user.email && user.password){
-        setLoggedIn(user.displayName)
+    
         firebase.auth().createUserWithEmailAndPassword( user.email, user.password)
         .then(res => {
+            console.log(res);
             const newUser = {...user};
              newUser.success = "Create Account Successfully";
              setUser(newUser);
-             setLoggedIn(user.displayName)
+             updateProfile(user);
              
         })
         .catch(function(error) {
@@ -69,6 +69,17 @@ const formSubmit =(e) => {
     }
 
    e.preventDefault();
+}
+const updateProfile =(user) => {
+    const users = firebase.auth().currentUser;
+
+        users.updateProfile({
+        displayName: user.displayName,
+        }).then(function() {
+        // Update successful.
+        }).catch(function(error) {
+        // An error happened.
+        });
 }
    
 

@@ -27,7 +27,7 @@ const Navbar = () => {
                         <li>Blog</li>
                         <li>Contact</li>
                         {
-                           loggedIn.email?  <h4 style={{color:"white"}}>{loggedIn.name} </h4>: <Link to="/login"> <button > Login</button></Link>
+                           loggedIn.email?  <h4 style={{color:"white"}}>{loggedIn.name}{loggedIn.displayName} </h4>: <Link to="/login"> <button > Login</button></Link>
                        }
                     </ul>
                </nav>

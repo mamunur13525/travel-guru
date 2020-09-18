@@ -27,7 +27,7 @@ const Search = () => {
                             <li>Blog</li>
                             <li>Contact</li>
                             {
-                           loggedIn.email? <h4>{loggedIn.name}</h4>: <Link to="/login"> <button > Login</button></Link>
+                           loggedIn.email? <h4>{loggedIn.name}{loggedIn.displayName}</h4>: <Link to="/login"> <button > Login</button></Link>
                        }
                         </ul>
                 </nav>

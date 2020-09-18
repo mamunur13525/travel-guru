@@ -12,7 +12,7 @@ const Maincontent = () => {
                 <div className="row mt-5">
                     <div className="left-side">
                         <h1>Cox's bazar</h1>
-                        <p className="pt-1 pb-3" style={{width: "400px"}}>Lorem ipsum dolor sit orem ipsum dolor sit orem ipsum dolor sit amet consectetur adipisicing elit. Vitae, repellat?Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, repellat?</p>
+                        <p className="pt-1 pb-3" style={{width: "400px"}}>Cox’s Bazar is a town on the southeast coast of Bangladesh. It’s known for its very long, sandy beachfront, stretching from Sea Beach in the north to Kolatoli Beach in the south?</p>
                        <Link to="/booking"><button>Booking </button></Link> 
                     </div>
                     <div className="right-side">

@@ -43,15 +43,15 @@ const [loggedIn, setLoggedIn] = useState({});
                     <Route path='/sundorban'>
                       <Sundorban></Sundorban>
                     </Route>
-                    <PrivateRoute path='/booking'>
+                    <Route path='/booking'>
                       <Booking></Booking>
-                    </PrivateRoute>
+                    </Route>
                     <Route path='/createaccount'>
                         <CreateAccount></CreateAccount>
                     </Route>
-                    <Route paths="/search">
+                    <PrivateRoute paths="/search">
                        <Search></Search>
-                    </Route>
+                    </PrivateRoute>
                       
                     <Route path="*">
                       <h1>page not found</h1>
