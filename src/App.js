@@ -10,9 +10,9 @@ import {
 } from "react-router-dom";
 import Sreemongol from './component/Sreemongol/Sreemongol';
 import Sundorban from './component/Sundorban/Sundorban';
-import Booking from './component/Booking/Booking';
+import SpotDetail from './component/SpotDetail/SpotDetail';
 import CreateAccount from './component/CreateAccount/CreateAccount';
-import Search from './component/Search/Search';
+import Booking from './component/Booking/Booking';
 import PrivateRoute from './component/PrivateRoute/PrivateRoute';
 
 
@@ -51,13 +51,13 @@ const [spot, setSpot]= useState({});
                       <Sundorban></Sundorban>
                     </Route>
                     <Route path='/booking/:nicName'>
-                      <Booking></Booking>
+                      <SpotDetail></SpotDetail>
                     </Route>
                     <Route path='/createaccount'>
                         <CreateAccount></CreateAccount>
                     </Route>
-                    <PrivateRoute paths="/search">
-                       <Search></Search>
+                    <PrivateRoute paths="/booking">
+                       <Booking></Booking>
                     </PrivateRoute>
                       
                     <Route path="*">

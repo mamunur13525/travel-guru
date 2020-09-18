@@ -8,13 +8,13 @@ import firebaseConfig from '../../firebaseConfig';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { UserContext } from '../../App';
-import {useHistory, useLocation} from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-const CreateAccount = () => {
 
-   
+
+const CreateAccount = () => {
     const [user, setUser] = useState({
         email: '',
         firstName: '',
@@ -23,45 +23,47 @@ const CreateAccount = () => {
         error: '',
         confirmPassword: '',
         lastName: '',
+        isCreateUser: false,
     })
     const history = useHistory();
-
     const location = useLocation();
-
     const [loggedIn, setLoggedIn] = useContext(UserContext);
-    const googlelogin =() => {
+
+    /* Google Login */
+    const googlelogin = () => {
         const provider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(provider).then(function(result) {
-            const {displayName, email} = result.user;
-           const signInUser = {name:displayName, email}
-           setLoggedIn(signInUser)
+        firebase.auth().signInWithPopup(provider).then(function (result) {
+            const { displayName, email } = result.user;
+            const signInUser = { name: displayName, email }
+            setLoggedIn(signInUser)
             history.replace('/');
-           
-            
+
+
             // ...
-          }).catch(function(error) {
+        }).catch(function (error) {
             const newUser = { ...user };
             newUser.error = error.message;
             setUser(newUser)
-          });
+        });
     }
-    const fbLogin=() => {
+    /* Facebook Login */
+    const fbLogin = () => {
         var fbProvider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(fbProvider).then(function(result) {
-            const {displayName, email} = result.user;
-            const signInUser = {name:displayName, email}
+        firebase.auth().signInWithPopup(fbProvider).then(function (result) {
+            const { displayName, email } = result.user;
+            const signInUser = { name: displayName, email }
             setLoggedIn(signInUser)
-             history.replace('/');
-            
-          }).catch(function(error) {
-    
+            history.replace('/');
+
+        }).catch(function (error) {
+
             const newUser = { ...user };
-                            newUser.error = error.message;
-                            setUser(newUser)
-          });
+            newUser.error = error.message;
+            setUser(newUser)
+        });
     }
 
-
+    /* Email and Password Cheacking */
     const handleBlur = (e) => {
         let validForm;
         if (e.target.name === "email") {
@@ -86,13 +88,10 @@ const CreateAccount = () => {
 
         }
 
-        
-
         if (e.target.name === "firstName") {
             const newUser = { ...user };
             newUser[e.target.name] = e.target.value;
             setUser(newUser)
-
         }
         if (e.target.name === "lastName") {
             const newUser = { ...user };
@@ -100,48 +99,43 @@ const CreateAccount = () => {
             setUser(newUser)
 
         }
-
         if (validForm) {
             const newUser = { ...user };
             newUser[e.target.name] = e.target.value;
             setUser(newUser);
             console.log(newUser)
         }
-
-
     }
 
-
-  
-
+    /* Form Submit */
     const formSubmit = (e) => {
-
         if (user.email && user.password) {
-
-           if(user.password === user.confirmPassword){
-            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-            .then(res => {
-                console.log(res);
-                const newUser = { ...user };
-                        newUser.success = "Create Account Successfully";
+            if (user.password === user.confirmPassword) {
+                firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+                    .then(res => {
+                        console.log(res);
+                        const newUser = { ...user };
+                        newUser.success = "Create Account Successfully. Pleace Login";
+                        newUser.isCreateUser = true;
                         setUser(newUser);
                         updateProfile(user);
 
-                        })
-                        .catch(function (error) {
-                            // Handle Errors here.
-                            const newUser = { ...user };
-                            newUser.error = error.message;
-                            setUser(newUser)
-                            // ...
-                        });
-                }
-                else{
-                   alert('Password Not Match? Pleace check again ')
-                }
-           }else{
-               alert('Pleace fillup all fill ')
-           }
+                    })
+                    .catch(function (error) {
+                        // Handle Errors here.
+                        const newUser = { ...user };
+                        newUser.error = error.message;
+                        setUser(newUser)
+                        // ...
+                    });
+            }
+            else {
+                alert('Password Not Match? Pleace check again ')
+            }
+        } 
+        else {
+            alert('Pleace fillup all fill ')
+        }
 
         e.preventDefault();
     }
@@ -149,7 +143,7 @@ const CreateAccount = () => {
         const users = firebase.auth().currentUser;
 
         users.updateProfile({
-            displayName: user.firstName +" "+ user.lastName,
+            displayName: user.firstName + " " + user.lastName,
         }).then(function () {
             // Update successful.
         }).catch(function (error) {
@@ -175,7 +169,7 @@ const CreateAccount = () => {
                         <li>Blog</li>
                         <li>Contact</li>
                         {
-                            loggedIn.email ? <h4>{loggedIn.name}</h4> : <Link to="/login"> <button > Login</button></Link>
+                            loggedIn.name || loggedIn.email ? <h4>{loggedIn.name}</h4> : <Link to="/login"> <button > Login</button></Link>
                         }
                     </ul>
                 </nav>
@@ -193,10 +187,12 @@ const CreateAccount = () => {
                             <div><input type="checkbox" name="check" id="" /><label for="check">Remember Me</label></div>
                             <p className="link"><a href="#">Forgot Password</a> </p>
                         </div>
-                        <p style={{ color: 'red', textAlign: "center", fontWeight: "bold" }}>{user.error} </p>
-                        <p style={{ color: 'green', textAlign: "center", fontWeight: "bold" }}>{user.success} </p>
+                        {
+                            user.isCreateUser ?
+                                <p style={{ color: 'green', textAlign: "center", fontWeight: "bold" }}>{user.success} </p> : <p style={{ color: 'red', textAlign: "center", fontWeight: "bold" }}>{user.error} </p>
+                        }
                         <input onClick={formSubmit} className="loginInput" type="submit" value="Create an account" />
-                       
+
 
                     </form>
                     <p className="text-center">Already have an account   <Link to="/login">Log in</Link></p>

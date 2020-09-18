@@ -1,78 +1,24 @@
-
-
-.overlaybooking{
-    background-color: rgba(0, 0, 0, 0.692);
-    height: 100vh;
-        
+img{
+    width: 100px;
 }
-
-.bookingContent{
-    color:white;
-    margin-top:100px;
+.bg-search{
+    background-color: white;
+    height: 110vh;
+    
 }
-
-.leftSideBooking{
-    padding:0px 30px;
-   
-
+.navbar ul li{
+    padding:5px 30px;
+    text-decoration: none;
+    list-style: none;
+    cursor:pointer;
 }
-.leftSideBooking h1{
-    font-size: 65px;
-    color:white;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-top:25px;
+.searchUl li{
+    color:black!important;
 }
-.leftSideBooking p{
-    color:white;
-    margin-right: 100px;
-    width: 400px;
+.img-short{
+    width: 250px;
 }
-.leftSideBooking button{
-    padding:8px 25px;
-    background-color: #F9A623;
-    display: block;
-    color: black;
-    border:none;
-    border-radius: 5px;
-}
-.rightSideBooking{
-    background:white;
-    padding: 25px 20px;
-    color:black;
-    border-radius: 5px;
-    width: 400px;
-}
-.toForm{
-    background:#F3F3F4;
-    padding: 12px 15px;
-    border-radius: 4px;
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-.calender {
-    background: #F3F3F4;
-    padding: 10px 4px;
-    border: none;
-    border-radius: 5px;
-}
-.mr-5{
-    margin-right: 75px!important;
-    font-weight: bold;
-}
-.bookings img{
+.imgStar{
     width: 15px;
 }
-.rightSideBooking .form button{
-    width: 100%;
-    background: #F9A623;
-    border:none;
-    padding:12px 10px;
-    border-radius: 6px;
-    margin-top: 10px;
-    font-weight: bold;
-}
-.rightSideBooking .form p{
-    margin-bottom:5px;
-}
+ 

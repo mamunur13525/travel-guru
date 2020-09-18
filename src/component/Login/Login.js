@@ -47,9 +47,12 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
         var fbProvider = new firebase.auth.FacebookAuthProvider();
         firebase.auth().signInWithPopup(fbProvider).then(function(result) {
             const {displayName, email} = result.user;
-            const signInUser = {name:displayName, email}
-            setloggedIn(signInUser)
-             history.replace('/');
+            const signInUsers = {name:displayName, email}
+            setloggedIn(signInUsers)
+            history.replace(from);
+            console.log(signInUsers);
+            console.log(result.user);
+          
             
           }).catch(function(error) {
     
@@ -76,13 +79,15 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
 }
 
     const logInBtn = (e) => {
+        e.preventDefault();
         firebase.auth().signInWithEmailAndPassword(login.email, login.password)
         .then(res =>{
             console.log(res);
             const {displayName, email} = res.user;
             const signInUser = {displayName, email}
              setloggedIn(signInUser)
-             history.push('/home');
+             history.replace(from);
+           
         }) 
         .catch(function(error) {
             // Handle Errors here.
@@ -95,9 +100,7 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
 
        
     }
-    const logInBtnz =(e) => {
-        e.preventDefault();
-    }
+   
 
     return (
         <div className="overlay white">
@@ -115,14 +118,14 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
                             <li>Blog</li>
                             <li>Contact</li>
                             {
-                             loggedIn.email? <h4>{loggedIn.name}{loggedIn.displayName}</h4>: <Link to="/login"> <button > Login</button></Link>
+                            loggedIn.name ||loggedIn.email? <h4>{loggedIn.name}{loggedIn.displayName}</h4>: <Link to="/login"> <button > Login</button></Link>
                              }
                         </ul>
                 </nav>
             </div>
             <div className="maincontainer">
                 <div className="login">
-                    <form action="" onSubmit={logInBtnz}>
+                    <form action="" onSubmit={logInBtn}>
                         <h3>Login</h3>
                         <input onBlur={handleChange} placeholder="Username or Email" className="w-100 " type="email" name="email" id=""/>
                         <input onBlur={handleChange} placeholder="Password" className="w-100" type="password" name="password" id=""/>
@@ -130,10 +133,11 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
                             <div><input type="checkbox" name="check" id=""/><label for="check">Remember Me</label></div>
                             <p className="link"><a href="">Forgot Password</a> </p>
                         </div>
-                        <input onClick={logInBtn}  className="loginInput" type="submit" value="Login"/>
                         {
-                            login.error&& <p>{login.error}</p> 
+                            login.error && <p style={{color:'red',fontWeight:'bold'}}>{login.error}</p> 
                         }
+                        <input  className="loginInput" type="submit" value="Login"/>
+                      
                     </form>
                    
                     <p className="text-center">Don't have an account?   <Link to="/createaccount"> Create an account</Link>  </p>
