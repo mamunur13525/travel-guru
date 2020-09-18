@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {  useContext } from 'react';
 import './Search.css';
 import { Link } from 'react-router-dom';
 import image from '../../images/favicon.png';
@@ -6,8 +6,11 @@ import img1 from '../../images/bg-images/Rectangle_26.png';
 import img2 from '../../images/bg-images/Rectangle_27.png';
 import img3 from '../../images/bg-images/Rectangle_28.png';
 import star from '../../images/Icon/star_1_.png'
+import { UserContext } from '../../App';
 
 const Search = () => {
+
+    const [loggedIn, setLoggedIn] = useContext(UserContext);
     return (
         <div className="bg-search">
              <div className="container">
@@ -23,7 +26,9 @@ const Search = () => {
                             <li>Destination</li>
                             <li>Blog</li>
                             <li>Contact</li>
-                            <li>Safin</li>
+                            {
+                           loggedIn.email? <h4>{loggedIn.name}</h4>: <Link to="/login"> <button > Login</button></Link>
+                       }
                         </ul>
                 </nav>
                 <hr/>

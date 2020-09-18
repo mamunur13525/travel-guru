@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './Login.css';
 import image from '../../images/favicon.png';
 import { Link } from 'react-router-dom';
@@ -14,6 +14,12 @@ import {useHistory, useLocation} from 'react-router-dom';
 const Login = () => {
     const history = useHistory();
     const location = useLocation();
+    const [login, setLogin] = useState({
+        error: '',
+        email: '',
+        password:''
+        
+    })
 
 const [loggedIn, setloggedIn] = useContext(UserContext);
    if(firebase.app.length === 0){
@@ -55,10 +61,51 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
             // ...
           });
     }
+    const handleChange=(e) => {
+        let validForm ;
+        if(e.target.name === "email"){
+            validForm =  /\S+@\S+\.\S+/.test(e.target.value)    
+        }
+        if(e.target.name === "password"){
+            const validPass = e.target.value.length>3;
+            validForm= validPass;
+          }
+      
+       
+    if(validForm){
+        const newUser= {...login};
+        newUser.[e.target.name] = e.target.value;
+        setLogin(newUser);
+    }
+ 
+}
+
+    const logInBtn = (e) => {
+        firebase.auth().signInWithEmailAndPassword(login.email, login.password)
+        .then(res =>{
+            console.log(res.user);
+            const {displayName, email} = res.user;
+            const signInUser = {displayName, email}
+             setloggedIn(signInUser)
+             history.push('/home');
+        }) 
+        .catch(function(error) {
+            // Handle Errors here.
+            // var errorCode = error.code;
+        
+            const loginerror = {...login};
+            loginerror.error = error.message;
+            setLogin(loginerror)
+          });
+
+       
+    }
+    const logInBtnz =(e) => {
+        e.preventDefault();
+    }
 
     return (
         <div className="overlay white">
-           
                <div className="container">
                <nav className='d-flex navbar p-4'>
                     <div>
@@ -72,20 +119,28 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
                             <li>Destination</li>
                             <li>Blog</li>
                             <li>Contact</li>
-                        <Link to="/login"> <button > Login</button></Link>
+                            {
+                             loggedIn.email? <h4>{loggedIn.name}{loggedIn.displayName}</h4>: <Link to="/login"> <button > Login</button></Link>
+                             }
                         </ul>
                 </nav>
             </div>
             <div className="maincontainer">
                 <div className="login">
-                    <h3>Login</h3>
-                    <input placeholder="Username or Email" className="w-100 " type="email" name="" id=""/>
-                    <input placeholder="Password" className="w-100" type="password" name="" id=""/>
-                    <div className="d-flex justify-content-between">
-                        <div><input type="checkbox" name="check" id=""/><label for="check">Remember Me</label></div>
-                        <p className="link"><a href="">Forgot Password</a> </p>
-                    </div>
-                    <input className="loginInput" type="submit" value="Login"/>
+                    <form action="" onSubmit={logInBtnz}>
+                        <h3>Login</h3>
+                        <input onBlur={handleChange} placeholder="Username or Email" className="w-100 " type="email" name="email" id=""/>
+                        <input onBlur={handleChange} placeholder="Password" className="w-100" type="password" name="password" id=""/>
+                        <div className="d-flex justify-content-between">
+                            <div><input type="checkbox" name="check" id=""/><label for="check">Remember Me</label></div>
+                            <p className="link"><a href="">Forgot Password</a> </p>
+                        </div>
+                        <input onClick={logInBtn}  className="loginInput" type="submit" value="Login"/>
+                        {
+                            login.error&& <p>{login.error}</p> 
+                        }
+                    </form>
+                   
                     <p className="text-center">Don't have an account?   <Link to="/createaccount"> Create an account</Link>  </p>
                 </div>
                 <div className="othersLogin w-25  m-auto">

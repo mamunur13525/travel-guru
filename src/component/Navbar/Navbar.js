@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import image from '../../images/logo.png';
 import './Navbar.css';
+import { UserContext } from '../../App';
 
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 
-   
+   const [loggedIn, setLoggedIn] = useContext(UserContext);
   
     return (
         <div className="bg">
@@ -25,7 +26,9 @@ const Navbar = () => {
                         <li>Destination</li>
                         <li>Blog</li>
                         <li>Contact</li>
-                       <Link to="/login"> <button> Login</button></Link>
+                        {
+                           loggedIn.email?  <h4 style={{color:"white"}}>{loggedIn.name} </h4>: <Link to="/login"> <button > Login</button></Link>
+                       }
                     </ul>
                </nav>
            </div>

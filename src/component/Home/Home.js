@@ -5,6 +5,7 @@ import './Home.css';
 
 
 const Home = () => {
+   
     return (
         <div className="overlay">
             <Navbar></Navbar>
