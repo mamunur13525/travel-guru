@@ -12,7 +12,6 @@ const SpotDetail = () => {
   const {nicName} = useParams();
   const spotData = fakeData;
   const target = spotData.find(data =>  data.nicname === nicName)
-  console.log(target)
 
   const style ={
     backgroundImage:`url(${target.pic})`,

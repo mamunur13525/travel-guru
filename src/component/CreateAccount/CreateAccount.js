@@ -103,7 +103,7 @@ const CreateAccount = () => {
             const newUser = { ...user };
             newUser[e.target.name] = e.target.value;
             setUser(newUser);
-            console.log(newUser)
+           
         }
     }
 
@@ -113,7 +113,7 @@ const CreateAccount = () => {
             if (user.password === user.confirmPassword) {
                 firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
                     .then(res => {
-                        console.log(res);
+                     
                         const newUser = { ...user };
                         newUser.success = "Create Account Successfully. Pleace Login";
                         newUser.isCreateUser = true;

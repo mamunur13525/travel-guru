@@ -38,9 +38,9 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
             // ...
           }).catch(function(error) {
             // Handle Errors here.
-            var errorMessage = error.message;
-            var email = error.email;
-           
+            const loginerror = {...login};
+            loginerror.error = error.message;
+            setLogin(loginerror)
           });
     }
     const fbLogin=() => {
@@ -50,13 +50,12 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
             const signInUsers = {name:displayName, email}
             setloggedIn(signInUsers)
             history.replace(from);
-            console.log(signInUsers);
-            console.log(result.user);
-          
-            
+
           }).catch(function(error) {
     
-           console.log(error.message)
+            const loginerror = {...login};
+            loginerror.error = error.message;
+            setLogin(loginerror)
           });
     }
     const handleChange=(e) => {
@@ -82,7 +81,7 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
         e.preventDefault();
         firebase.auth().signInWithEmailAndPassword(login.email, login.password)
         .then(res =>{
-            console.log(res);
+          
             const {displayName, email} = res.user;
             const signInUser = {displayName, email}
              setloggedIn(signInUser)

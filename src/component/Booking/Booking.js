@@ -12,16 +12,12 @@ import mapImg from '../../images/location/map.png'
 
 const Booking = () => {
     const {nicName} = useParams();
-  console.log(nicName)
-  
+
   const spotData = fakeData;
   const target = spotData.find(data =>  data.nicname === nicName);
-    console.log(target)
-
     const [loggedIn, setLoggedIn] = useContext(UserContext);
-   
     const [spot, setSpot] = useContext(ToristSpot);
-    console.log(spot)
+   
     return (
         <div className="bg-search">
              <div className="container">

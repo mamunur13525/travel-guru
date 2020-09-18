@@ -1,4 +1,4 @@
-import React, { useState,createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import './App.css';
 import Home from './component/Home/Home';
 import Login from './component/Login/Login';
@@ -17,62 +17,63 @@ import PrivateRoute from './component/PrivateRoute/PrivateRoute';
 
 
 
- export const UserContext = createContext();
- export const ToristSpot = createContext();
+export const UserContext = createContext();
+export const ToristSpot = createContext();
 
 function App() {
 
-const [loggedIn, setLoggedIn] = useState({});
-const [spot, setSpot]= useState({});
+  const [loggedIn, setLoggedIn] = useState({});
+  const [spot, setSpot] = useState({});
 
   return (
     <UserContext.Provider value={[loggedIn, setLoggedIn]}>
-    <ToristSpot.Provider value={[spot, setSpot]}>
+      <ToristSpot.Provider value={[spot, setSpot]}>
 
 
-        <Router>
-        
-                <Switch>
+      <Router>
 
-                  
-                    <Route path='/home'>
-                        <Home></Home>
-                    </Route>
-                    <Route exact path='/'>
-                        <Home></Home>
-                    </Route>
-                    <Route path='/login'>
-                      <Login></Login>
-                    </Route>
-                    <Route path='/sreemongol'>
-                     <Sreemongol></Sreemongol>
-                    </Route>
-                    <Route path='/sundorban'>
-                      <Sundorban></Sundorban>
-                    </Route>
-                    <Route path='/booking/:nicName'>
-                      <SpotDetail></SpotDetail>
-                    </Route>
-                    <Route path='/createaccount'>
-                        <CreateAccount></CreateAccount>
-                    </Route>
-                    <PrivateRoute paths="/booking">
-                       <Booking></Booking>
-                    </PrivateRoute>
-                      
-                    <Route path="*">
-                      <h1>page not found</h1>
-                    </Route>
+        <Switch>
+              <Route path='/home'>
+                <Home></Home>
+              </Route>
 
+              <Route exact path='/'>
+                <Home></Home>
+              </Route>
 
+              <Route path='/login'>
+                <Login></Login>
+              </Route>
 
+              <Route path='/sreemongol'>
+                <Sreemongol></Sreemongol>
+              </Route>
 
-                </Switch>
+              <Route path='/sundorban'>
+                <Sundorban></Sundorban>
+              </Route>
 
-            </Router>
-        
+              <Route path='/booking/:nicName'>
+                <SpotDetail></SpotDetail>
+              </Route>
+
+              <Route path='/createaccount'>
+                <CreateAccount></CreateAccount>
+              </Route>
+
+              <PrivateRoute paths="/booking">
+                <Booking></Booking>
+              </PrivateRoute>
+
+              <Route path="*">
+                <h1>page not found</h1>
+              </Route>
+              
+          </Switch>
+        </Router>
+
       </ToristSpot.Provider>
-      </UserContext.Provider>
+    </UserContext.Provider>
   );
 }
 
