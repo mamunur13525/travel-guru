@@ -18,11 +18,18 @@ import PrivateRoute from './component/PrivateRoute/PrivateRoute';
 
 
  export const UserContext = createContext();
+ export const ToristSpot = createContext();
 
 function App() {
+
 const [loggedIn, setLoggedIn] = useState({});
+const [spot, setSpot]= useState({});
+
   return (
     <UserContext.Provider value={[loggedIn, setLoggedIn]}>
+    <ToristSpot.Provider value={[spot, setSpot]}>
+
+
         <Router>
         
                 <Switch>
@@ -43,7 +50,7 @@ const [loggedIn, setLoggedIn] = useState({});
                     <Route path='/sundorban'>
                       <Sundorban></Sundorban>
                     </Route>
-                    <Route path='/booking'>
+                    <Route path='/booking/:nicName'>
                       <Booking></Booking>
                     </Route>
                     <Route path='/createaccount'>
@@ -63,6 +70,8 @@ const [loggedIn, setLoggedIn] = useState({});
                 </Switch>
 
             </Router>
+        
+      </ToristSpot.Provider>
       </UserContext.Provider>
   );
 }

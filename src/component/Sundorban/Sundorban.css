@@ -1,4 +1,3 @@
-
 .sundorbanBg{
     background-image: url('../../images/bg-images/sundorbon.png');
     background-size: cover;
@@ -6,6 +5,7 @@
     background-position: bottom;
     height: 97.8vh;
 }
+
 .overlaythree{
     background-color: rgba(0, 0, 0, 0.514);
     height: 97.8vh;

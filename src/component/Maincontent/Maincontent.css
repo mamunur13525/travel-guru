@@ -14,6 +14,9 @@
     color:white;
     margin-right: 100px;
 }
+.left-side a:hover{
+    text-decoration: none;
+}
 .left-side button{
     padding:8px 25px;
     background-color: #F9A623;

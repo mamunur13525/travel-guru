@@ -1,16 +1,26 @@
 import React, {  useContext } from 'react';
 import './Search.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import image from '../../images/favicon.png';
 import img1 from '../../images/bg-images/Rectangle_26.png';
 import img2 from '../../images/bg-images/Rectangle_27.png';
 import img3 from '../../images/bg-images/Rectangle_28.png';
 import star from '../../images/Icon/star_1_.png'
-import { UserContext } from '../../App';
+import { UserContext, ToristSpot } from '../../App';
+import fakeData from '../fakedata/fakedata';
 
 const Search = () => {
+    const {nicName} = useParams();
+  console.log(nicName)
+  
+  const spotData = fakeData;
+  const target = spotData.find(data =>  data.nicname === nicName);
+    console.log(target)
 
     const [loggedIn, setLoggedIn] = useContext(UserContext);
+   
+    const [spot, setSpot] = useContext(ToristSpot);
+    console.log(spot)
     return (
         <div className="bg-search">
              <div className="container">
@@ -34,7 +44,7 @@ const Search = () => {
                 <hr/>
                 <div>
                     <p className="mb-0"><small>252 stays Apr 13-17 3 guests</small></p>
-                    <h5 className="font-weight-bold">Stay in Cox's Bazar</h5>
+                    <h5 className="font-weight-bold">Stay in {spot.name}</h5>
                 </div>
                 <div className="row">
                     <div className="col-6">

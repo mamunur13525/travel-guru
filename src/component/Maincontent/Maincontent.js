@@ -1,11 +1,16 @@
+
+
 import React from 'react';
 import './Maincontent.css'
 import image1 from '../../images/bg-images/Sajek.png'
 import image2 from '../../images/bg-images/Sreemongol.png'
 import image3 from '../../images/bg-images/sundorbon.png'
 import { Link } from 'react-router-dom';
+import fakeData from '../fakedata/fakedata'
 
 const Maincontent = () => {
+    
+    const spotData = fakeData;
     return (
         <div className='d-flex mt-5 '>
            
@@ -13,12 +18,12 @@ const Maincontent = () => {
                     <div className="left-side">
                         <h1>Cox's bazar</h1>
                         <p className="pt-1 pb-3" style={{width: "400px"}}>Cox’s Bazar is a town on the southeast coast of Bangladesh. It’s known for its very long, sandy beachfront, stretching from Sea Beach in the north to Kolatoli Beach in the south?</p>
-                       <Link to="/booking"><button>Booking </button></Link> 
+                       <Link to={`/booking/`+spotData[0].nicname}><button>Booking </button></Link> 
                     </div>
                     <div className="right-side">
                         <div className="row ">
 
-                           <div>
+                        <div>
                                <Link to="/home">
                                   <img src={image1} alt=""/>
                                </Link>

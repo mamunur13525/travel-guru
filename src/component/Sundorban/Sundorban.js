@@ -5,8 +5,10 @@ import image3 from '../../images/bg-images/sundorbon.png'
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import './Sundorban.css'
+import fakeData from '../fakedata/fakedata';
 
 const Sundorban = () => {
+    const spotData = fakeData;
     return (
         <div className="sundorbanBg ">
             <div className="overlaythree">
@@ -16,7 +18,7 @@ const Sundorban = () => {
             <div className="left-side  mt-5 ">
                 <h1>Sundorban</h1>
                 <p className="pt-1 pb-3" style={{width: "400px"}}>Lorem ipsum dolor sit orem ipsum dolor sit orem ipsum dolor sit amet consectetur adipisicing elit. Vitae, repellat?Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae, repellat?</p>
-                <Link to="/booking"><button>Booking </button></Link> 
+                <Link to={`/booking/`+spotData[1].nicname}><button>Booking </button></Link> 
             </div>
             <div className="right-side  mt-5 ">
                 <div className="row ">

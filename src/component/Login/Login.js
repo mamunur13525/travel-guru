@@ -48,17 +48,12 @@ const [loggedIn, setloggedIn] = useContext(UserContext);
         firebase.auth().signInWithPopup(fbProvider).then(function(result) {
             const {displayName, email} = result.user;
             const signInUser = {name:displayName, email}
-             setloggedIn(signInUser)
-             history.replace(from);
-            console.log(result.user)
+            setloggedIn(signInUser)
+             history.replace('/');
+            
           }).catch(function(error) {
-      
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            // ...
+    
+           console.log(error.message)
           });
     }
     const handleChange=(e) => {
