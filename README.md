@@ -11,6 +11,10 @@
 
 
 [Live Preview](https://guru-travels-b6e87.web.app/ "Travel Guru Live Preview Link.")    
-__Technology:__ React js, React Router, Firebase Authentication, Bootstrap            
+__Technology Uses:__ 
+* React js
+* React Router
+* Firebase Authentication  
+* Bootstrap            
 
 
