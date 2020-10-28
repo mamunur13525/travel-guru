@@ -1,4 +1,7 @@
 # Travel Guru Website Code
+
+![alt text](https://i.ibb.co/NKbRcDJ/Travel-guru-web-application.png)
+
 *	A tour booking system project.
 *	Login & logout authentication system.
 *	Customers can book a tour.
